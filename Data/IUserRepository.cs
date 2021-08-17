@@ -10,6 +10,6 @@ namespace meus_produtos.Data
     Task<User> GetUser(string email);
     Task<User> AddUser(User user);
     Task<User> UpdateUser(User user);
-    Task DeleteProduct(int id);
+    Task DeleteUser(string email);
   }
 }

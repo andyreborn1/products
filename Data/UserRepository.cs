@@ -1,34 +1,64 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using meus_produtos.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace meus_produtos.Data
 {
   public class UserRepository : IUserRepository
   {
-    public Task<User> AddUser(User user)
+    DataContext dataContext;
+
+    public UserRepository(DataContext dataContext)
     {
-      throw new System.NotImplementedException();
+      this.dataContext = dataContext;
     }
 
-    public Task DeleteProduct(int id)
+    public async Task<User> AddUser(User user)
     {
-      throw new System.NotImplementedException();
+      var result = await dataContext.Users.AddAsync(user);
+      await dataContext.SaveChangesAsync();
+      return result.Entity;
     }
 
-    public Task<User> GetUser(string email)
+    public async Task DeleteUser(string email)
     {
-      throw new System.NotImplementedException();
+      var result = await dataContext.Users
+      .FirstOrDefaultAsync(u => u.Email == email);
+
+      if (result != null)
+      {
+        dataContext.Users.Remove(result);
+        await dataContext.SaveChangesAsync();
+      }
     }
 
-    public Task<IEnumerable<User>> GetUsers()
+    public async Task<User> GetUser(string email)
     {
-      throw new System.NotImplementedException();
+      return await dataContext.Users
+      .FirstOrDefaultAsync(u => u.Email == email);
     }
 
-    public Task<User> UpdateUser(User user)
+    public async Task<IEnumerable<User>> GetUsers()
     {
-      throw new System.NotImplementedException();
+      return await dataContext.Users.ToListAsync();
+    }
+
+    public async Task<User> UpdateUser(User user)
+    {
+      var result = await dataContext.Users
+      .FirstOrDefaultAsync(u => u.Email == user.Email);
+
+      if (result != null)
+      {
+        result.Name = user.Name;
+        result.Email = user.Email;
+        result.Password = user.Password;
+
+        await dataContext.SaveChangesAsync();
+        return result;
+      }
+      return null;
     }
   }
 }
