@@ -34,22 +34,6 @@ namespace meus_produtos.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Borracha",
-                            Status = true,
-                            Value = 0.50m
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Lápis",
-                            Status = false,
-                            Value = 0.90m
-                        });
                 });
 
             modelBuilder.Entity("meus_produtos.Models.User", b =>
@@ -71,23 +55,10 @@ namespace meus_produtos.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.HasIndex("Email")
+                        .IsUnique();
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "andy@gmail.com",
-                            Name = "Anderson Vinicius",
-                            Password = "1234578"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Email = "bruno@gmail.com",
-                            Name = "Bruno Josep",
-                            Password = "67897845"
-                        });
+                    b.ToTable("Users");
                 });
 #pragma warning restore 612, 618
         }

@@ -36,25 +36,11 @@ namespace meus_produtos.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
-            migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "Id", "Name", "Status", "Value" },
-                values: new object[] { 1, "Borracha", true, 0.50m });
-
-            migrationBuilder.InsertData(
-                table: "Products",
-                columns: new[] { "Id", "Name", "Status", "Value" },
-                values: new object[] { 2, "Lápis", false, 0.90m });
-
-            migrationBuilder.InsertData(
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Email",
                 table: "Users",
-                columns: new[] { "Id", "Email", "Name", "Password" },
-                values: new object[] { 1, "andy@gmail.com", "Anderson Vinicius", "1234578" });
-
-            migrationBuilder.InsertData(
-                table: "Users",
-                columns: new[] { "Id", "Email", "Name", "Password" },
-                values: new object[] { 2, "bruno@gmail.com", "Bruno Josep", "67897845" });
+                column: "Email",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

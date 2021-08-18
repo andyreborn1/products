@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using meus_produtos.Models;
 using meus_produtos.Data;
 using Microsoft.AspNetCore.Http;
@@ -40,16 +39,13 @@ namespace meus_produtos.Controllers
     {
       try
       {
-        var result = Ok(await productRepository.GetProduct(id));
+        var result = await productRepository.GetProduct(id);
 
         if (result == null)
         {
           return NotFound();
         }
-        else
-        {
-          return result;
-        }
+        return Ok(result);
       }
       catch (System.Exception)
       {
