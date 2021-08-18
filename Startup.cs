@@ -34,6 +34,8 @@ namespace meus_produtos
         opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
       });
       services.AddScoped<DataContext, DataContext>();
+      services.AddScoped<IUserRepository, UserRepository>();
+      services.AddScoped<IProductRepository, ProductRepository>();
 
       services.AddControllers();
       services.AddSwaggerGen(c =>
