@@ -8,8 +8,8 @@ using meus_produtos.Data;
 namespace meus_produtos.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210817200658_InitialMigrations")]
-    partial class InitialMigrations
+    [Migration("20210818062054_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,6 +56,10 @@ namespace meus_produtos.Migrations
 
             modelBuilder.Entity("meus_produtos.Models.User", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
 
@@ -67,19 +71,21 @@ namespace meus_produtos.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
 
-                    b.HasKey("Email");
+                    b.HasKey("Id");
 
                     b.ToTable("Users");
 
                     b.HasData(
                         new
                         {
+                            Id = 1,
                             Email = "andy@gmail.com",
                             Name = "Anderson Vinicius",
                             Password = "1234578"
                         },
                         new
                         {
+                            Id = 2,
                             Email = "bruno@gmail.com",
                             Name = "Bruno Josep",
                             Password = "67897845"

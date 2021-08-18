@@ -21,10 +21,10 @@ namespace meus_produtos.Data
       return result.Entity;
     }
 
-    public async Task DeleteUser(string email)
+    public async Task DeleteUser(int id)
     {
       var result = await dataContext.Users
-      .FirstOrDefaultAsync(u => u.Email == email);
+      .FirstOrDefaultAsync(u => u.Id == id);
 
       if (result != null)
       {
@@ -33,10 +33,10 @@ namespace meus_produtos.Data
       }
     }
 
-    public async Task<User> GetUser(string email)
+    public async Task<User> GetUser(int id)
     {
       return await dataContext.Users
-      .FirstOrDefaultAsync(u => u.Email == email);
+      .FirstOrDefaultAsync(u => u.Id == id);
     }
 
     public async Task<IEnumerable<User>> GetUsers()
@@ -47,7 +47,7 @@ namespace meus_produtos.Data
     public async Task<User> UpdateUser(User user)
     {
       var result = await dataContext.Users
-      .FirstOrDefaultAsync(u => u.Email == user.Email);
+      .FirstOrDefaultAsync(u => u.Id == user.Id);
 
       if (result != null)
       {

@@ -2,7 +2,7 @@
 
 namespace meus_produtos.Migrations
 {
-    public partial class InitialMigrations : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -25,13 +25,15 @@ namespace meus_produtos.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(type: "TEXT", maxLength: 20, nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
                     Password = table.Column<string>(type: "TEXT", maxLength: 20, nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Email);
+                    table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
             migrationBuilder.InsertData(
@@ -46,13 +48,13 @@ namespace meus_produtos.Migrations
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Email", "Name", "Password" },
-                values: new object[] { "andy@gmail.com", "Anderson Vinicius", "1234578" });
+                columns: new[] { "Id", "Email", "Name", "Password" },
+                values: new object[] { 1, "andy@gmail.com", "Anderson Vinicius", "1234578" });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[] { "Email", "Name", "Password" },
-                values: new object[] { "bruno@gmail.com", "Bruno Josep", "67897845" });
+                columns: new[] { "Id", "Email", "Name", "Password" },
+                values: new object[] { 2, "bruno@gmail.com", "Bruno Josep", "67897845" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

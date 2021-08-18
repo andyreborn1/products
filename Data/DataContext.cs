@@ -19,6 +19,7 @@ namespace meus_produtos.Data
 
       modelBuilder.Entity<User>().HasData(new User
       {
+        Id = 1,
         Name = "Anderson Vinicius",
         Email = "andy@gmail.com",
         Password = "1234578"
@@ -26,6 +27,7 @@ namespace meus_produtos.Data
 
       modelBuilder.Entity<User>().HasData(new User
       {
+        Id = 2,
         Name = "Bruno Josep",
         Email = "bruno@gmail.com",
         Password = "67897845"

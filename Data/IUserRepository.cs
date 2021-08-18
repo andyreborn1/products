@@ -7,9 +7,9 @@ namespace meus_produtos.Data
   public interface IUserRepository
   {
     Task<IEnumerable<User>> GetUsers();
-    Task<User> GetUser(string email);
+    Task<User> GetUser(int id);
     Task<User> AddUser(User user);
     Task<User> UpdateUser(User user);
-    Task DeleteUser(string email);
+    Task DeleteUser(int id);
   }
 }
