@@ -1,5 +1,5 @@
 # Meus Produtos
-API RESTful simples usando ASP .NET 5 com C# e persistência de dados com Sqlite
+API RESTful simples usando ASP .NET 5 com C# e persistência de dados com Sqlite.
 
 ## Pré-Requisitos
 - .NET SDK
