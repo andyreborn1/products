@@ -13,5 +13,10 @@ dotnet run
 
 Após isso, o projeto pode ser visualizado no seguinte endereço:
 ```bash
-http://localhost:5000/
+http://localhost:5001/
+```
+
+A documentação gerada pelo Swagger pode ser acessada no endereço:
+```bash
+https://localhost:5001/swagger/index.html
 ```
