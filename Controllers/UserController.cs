@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using meus_produtos.Models;
 using meus_produtos.Data;
 using Microsoft.AspNetCore.Http;
+using meus_produtos.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace meus_produtos.Controllers
 {
@@ -14,6 +16,27 @@ namespace meus_produtos.Controllers
     public UserController(IUserRepository userRepository)
     {
       this.userRepository = userRepository;
+    }
+
+    [HttpPost]
+    [Route("login")]
+    [AllowAnonymous]
+    public async Task<ActionResult<dynamic>> Login([FromBody] User user)
+    {
+      User loggedUser = await userRepository.GetUserEmail(user.Email);
+
+      if (BCrypt.Net.BCrypt.Verify(user.Password, loggedUser.Password) == false)
+      {
+        return NotFound("Usuário ou senha inválido");
+      }
+
+      var token = TokenService.GenerateToken(loggedUser);
+
+      return new
+      {
+        loggedUser = loggedUser,
+        token = token
+      };
     }
 
     [HttpGet]
@@ -53,6 +76,7 @@ namespace meus_produtos.Controllers
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<User>> AddUser(User user)
     {
       try
@@ -61,6 +85,9 @@ namespace meus_produtos.Controllers
         {
           return BadRequest();
         }
+
+        string passwordHash = BCrypt.Net.BCrypt.HashPassword(user.Password);
+        user.Password = passwordHash;
 
         var createdUser = await userRepository.AddUser(user);
         return CreatedAtAction(nameof(GetUser),
@@ -74,6 +101,7 @@ namespace meus_produtos.Controllers
     }
 
     [HttpDelete("{id:int}")]
+    [Authorize]
     public async Task<ActionResult> DeleteUser(int id)
     {
       try
@@ -96,6 +124,7 @@ namespace meus_produtos.Controllers
     }
 
     [HttpPut("{id:int}")]
+    [Authorize]
     public async Task<ActionResult<User>> UpdateUser(int id, User user)
     {
       try

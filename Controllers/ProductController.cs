@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using meus_produtos.Models;
 using meus_produtos.Data;
 using Microsoft.AspNetCore.Http;
