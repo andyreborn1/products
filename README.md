@@ -33,5 +33,5 @@ Já existe um usuário padrão salvo no banco para para fazer login e poder cada
 
 ## Desafios/Problemas
 
-Não tive problemas durante a implementação desse projeto, já que eu já possuo um certo conhecimento na criação de APIs.<br>
-Meu maior desafio foi durante a implementação da autenticação com jwt, porque eu não possuia muito conhecimento sobre o assunto. Mas depois de algumas leituras ficou claro para mim como esse sistema de degração de token funciona.
+Não tive problemas durante a implementação desse projeto, já que possuo um certo conhecimento na criação de APIs.<br>
+Meu maior desafio foi durante a implementação da autenticação com jwt, porque eu não possuia muito conhecimento sobre o assunto, mas depois de algumas leituras ficou claro para mim como esse sistema de geração de token funciona.
