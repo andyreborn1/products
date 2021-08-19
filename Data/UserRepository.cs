@@ -39,6 +39,12 @@ namespace meus_produtos.Data
       .FirstOrDefaultAsync(u => u.Id == id);
     }
 
+    public async Task<User> GetUserEmail(string email)
+    {
+      return await dataContext.Users
+      .FirstOrDefaultAsync(u => u.Email == email);
+    }
+
     public async Task<IEnumerable<User>> GetUsers()
     {
       return await dataContext.Users.ToListAsync();
