@@ -36,6 +36,11 @@ namespace meus_produtos.Migrations
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Email", "Name", "Password" },
+                values: new object[] { 1, "admin@admin.com", "Admin", "$2a$11$ogj3gWVkjizt.K6NNEJ/TOQpNnUrHNVQ2JL5.qVJH038IVeL5Xjoy" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Users_Email",
                 table: "Users",

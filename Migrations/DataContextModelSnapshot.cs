@@ -59,6 +59,15 @@ namespace meus_produtos.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "admin@admin.com",
+                            Name = "Admin",
+                            Password = "$2a$11$ogj3gWVkjizt.K6NNEJ/TOQpNnUrHNVQ2JL5.qVJH038IVeL5Xjoy"
+                        });
                 });
 #pragma warning restore 612, 618
         }

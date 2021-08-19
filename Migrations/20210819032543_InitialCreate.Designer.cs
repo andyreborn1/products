@@ -8,7 +8,7 @@ using meus_produtos.Data;
 namespace meus_produtos.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210818194115_InitialCreate")]
+    [Migration("20210819032543_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -61,6 +61,15 @@ namespace meus_produtos.Migrations
                         .IsUnique();
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Email = "admin@admin.com",
+                            Name = "Admin",
+                            Password = "$2a$11$ogj3gWVkjizt.K6NNEJ/TOQpNnUrHNVQ2JL5.qVJH038IVeL5Xjoy"
+                        });
                 });
 #pragma warning restore 612, 618
         }
